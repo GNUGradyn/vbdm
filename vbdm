@@ -36,6 +36,20 @@ if [[ "$1" == "create-ext4" ]]; then
 	echo "Creating ext4 filesystem on $2..."
 	mkfs.ext4 $2
         echo "Mounting and setting permissions..."
+				if [ -d /media/vbdm/$2 ]; then
+		 read -p "MOUNTPOINT ALLREDY EXISTS! I can try to unmount anything on it and delete it if you would like [y/n] " response
+	         if [ $response == "y" ]; then
+			 if grep -qs '/media/vbdm/$2' /proc/mounts; then
+				 umount /media/vbdm/$2
+			fi
+			sudo rmdir /media/vbdm/$2
+
+		else
+			echo "Cleaning up and aborting.."
+			rm -r $2
+			exit 1
+	 fi
+	fi
         sudo mkdir /media/vbdm/$2
         sudo mount $2 /media/vbdm/$2
         sudo chown -R root:root /media/vbdm/$2
@@ -133,5 +147,5 @@ fi
     echo 'THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.'
     exit 0
 	fi
-cat usage
-exit 1
+ cat usage
+ exit 1
