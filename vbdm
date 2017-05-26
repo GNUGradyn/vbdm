@@ -14,7 +14,7 @@ usage() {
 	echo "   delete (arg1: name of file): Delete a Virtual Block Device"
 	echo "   mount (arg1: name of file): Mount a Virtual Block Device"
 	echo "   unmount (arg1: name of file): unmount a Virtual Block Device"
-	echo "   goto (arg1: name of file): cd's into a virtual device file"
+	echo "   dir (arg1: name of file): displays dir vitual block device is mounted (or would be mounted if it was mounted)"
 	echo "   make-real (arg1: name of file, arg2: device to clone to): Clones a Virtual Block Device onto an actual device"
 	echo "   make-virtual (arg1: device to clone from, arg2: name of file): Clones an actual device onto a Virtual Block Device"
 }
@@ -147,5 +147,14 @@ fi
     echo 'THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.'
     exit 0
 	fi
- cat usage
+	if [[ $1 == "dir" ]]; then
+	  if [[ $2 == "" ]]; then
+		 usage
+		 exit 1
+		 fi
+		echo ""
+		echo "/media/vbdm/$2"
+		exit 0
+	fi
+ usage
  exit 1
