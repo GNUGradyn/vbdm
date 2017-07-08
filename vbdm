@@ -1,6 +1,6 @@
 #!/bin/bash
 # VBDM (Virtual Block Device Manager)
-# Copyright Gradyn Wursten and Sahibdeep Nann 2017
+# Copyright Gradyn Wursten 2017
 # This software is licensed under the MIT license. See vbdm license for more info.
 echo "Virtual Block Device Manager 0.2"
 echo "Copyright Gradyn Wursten and Sahibdeep Nann 2017: see vbdm license for more info."
