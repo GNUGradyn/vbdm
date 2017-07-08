@@ -1,0 +1,2 @@
+InitializeSahib <initializesahib.com>:
+Sped up entire utility by replacing dd with fallocate
