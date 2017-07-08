@@ -28,7 +28,7 @@ make-real (arg1: name of file, arg2: device to clone to): Clones a Virtual Block
 make-virtual (arg1: device to clone from, arg2: name of file): Clones an actual device onto a Virtual Block Device
    
 # Am I allowed to (Insert thing here)?
-   This software is licened under the MIT license. This means as long as you leave the "Copyright Gradyn Wursten 2017" bit at the top of the document and at the start of the software, you are allowed to do whatever you wish. The full license is avalible in the LICENSE file or via the "vbdm license" command
+   This software is licened under the MIT license. This means as long as you leave the "Copyright Gradyn Wursten 2017" bit and include the license notice at the top of the document and at the start of the software, you are allowed to do whatever you wish. The full license is avalible in the LICENSE file or via the "vbdm license" command
    
 # Contributing
  Pull requests and bug reports are allways welcome!
