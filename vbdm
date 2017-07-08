@@ -1,9 +1,8 @@
 #!/bin/bash
-# VBDM (Virtual Block Device Manager)
-# Copyright Gradyn Wursten 2017
-# This software is licensed under the MIT license. See vbdm license for more info.
-echo "Virtual Block Device Manager 0.2"
-echo "Copyright Gradyn Wursten and Sahibdeep Nann 2017: see vbdm license for more info."
+#VBDM (Virtual Block Device Manager) Copyright Gradyn Wursten 2017
+#This software is licensed under the MIT license. See vbdm license for more info
+echo "Virtual Block Device Manager 0.1"
+echo "Copyright Gradyn Wursten 2017 - See vbdm license for more info"
 set -e
 set -o pipefail
 usage() {
@@ -12,8 +11,8 @@ usage() {
 	echo "   license: displays the MIT license with copyright notice"
 	echo "   create-ntfs (arg1: name of file, arg2: size in MiB): Creates an ntfs Virtual Block Device"
 	echo "   create-ext4 (arg1: name of file, arg2: size in MiB): Creates an ext4 Virtual Block Device"
-	echo "   delete (arg1: name of file): delete a Virtual Block Device"
-	echo "   mount (arg1: name of file): mount a Virtual Block Device"
+	echo "   delete (arg1: name of file): Delete a Virtual Block Device"
+	echo "   mount (arg1: name of file): Mount a Virtual Block Device"
 	echo "   unmount (arg1: name of file): unmount a Virtual Block Device"
 	echo "   dir (arg1: name of file): displays dir vitual block device is mounted (or would be mounted if it was mounted)"
 	echo "   make-real (arg1: name of file, arg2: device to clone to): Clones a Virtual Block Device onto an actual device"
@@ -33,7 +32,7 @@ if [[ "$1" == "create-ext4" ]]; then
 		exit 2
 	fi
 	echo "Creating $2 with size $3M..."
-	fallocate -l $3M $2
+	dd if=/dev/zero of=$2 bs=1M count=$3
 	echo "Creating ext4 filesystem on $2..."
 	mkfs.ext4 $2
         echo "Mounting and setting permissions..."
@@ -109,7 +108,7 @@ if [[ "$1" == "create-ntfs" ]]; then
 		exit 2
 	fi
 	echo "creating $2 with size $3M..."
-	fallocate -l $3M $2
+	dd if=/dev/zero of=$2 bs=1M count=$3
 	echo "Creating ntfs filesystem on $2..."
 	#mkfs.ntfs will refuse to create partitions on a file without the force flag.
 	#https://bugs.launchpad.net/nova/+bug/928749
@@ -142,7 +141,7 @@ if [[ "$1" == "create-ntfs" ]]; then
 fi
 	if [[ $1 == "license" ]]; then
 	  echo ""
-		echo "Copyright 2017 Gradyn Wursten and Sahibdeep Nann"
+		echo "Copyright 2017 Gradyn Wursten"
     echo 'Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:'
     echo 'The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.'
     echo 'THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.'
